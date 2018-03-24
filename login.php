@@ -19,15 +19,31 @@ function addLoadEvent(func) {
       func();
     }
   }
+  }
+function setFocus(y){
+var val = document.getElementById(y).value;
+if(val=="")
+{
+    document.getElementById(y).style.borderColor="red";
+    document.getElementById(y).style.background="#FFB599";
 }
-function setFocus(){
-     document.getElementById('name').style.background="yellow";
-     document.getElementById('name').style.opacity="1";
-   }
-function setBlur(){
-     document.getElementById('name').style.opacity="0.4";
-      document.getElementById('name').style.background="blue";
-   }
+else   
+{document.getElementById(y).style.background="whitesmoke";
+    document.getElementById(y).style.borderColor="black";
+}
+}
+function setBlur(y){
+var val = document.getElementById(y).value;
+if(val=="")
+{
+    document.getElementById(y).style.borderColor="red";
+    document.getElementById(y).style.background="#FFB599";
+}
+else   
+{document.getElementById(y).style.background="whitesmoke";
+    document.getElementById(y).style.borderColor="black";
+}
+}
 
 function prepareInputsForHints() {
   var inputs = document.getElementsByTagName("input");
@@ -193,7 +209,7 @@ dd {
   
   <tr>
       <td height="20" colspan="2" valign="top"><div align="right"><span class="style2"><img src="images/066.gif" width="16" height="16" /><a href="#"><font size="3">AboutUs</font></a>&nbsp;
-                  <img src="images/055.gif" width="16" height="16" /><a href="#"><font size="3">Help</font></a></span> </div></td>
+                  <img src="images/055.gif" width="16" height="16" /><a href="help.php"><font size="3">Help</font></a></span> </div></td>
   <td width="4">&nbsp;</td>
   </tr>
   <tr>
@@ -218,14 +234,14 @@ Admin please login here</font></legend>
             <span class="style14">
             <label for="firstname"><font face="Verdana, Arial, Helvetica, sans-serif" size="2" align="left"><b>Username:</b></font></label>
           </span>          </dt>
-          <dd><input name="name" type="text" id="name" maxlength="20" onfocus="setFocus()" onblur="setBlur()"/>
+          <dd><input name="name" type="text" id="name" maxlength="20" onfocus="setFocus(this.id)" onblur="setBlur(this.id)"/>
           <span class="hint"><font face="Verdana, Arial, Helvetica, sans-serif" size="1">Name should not exceed 20 characters.</font>
           <span class="hint-pointer"></span>  </span>		  </dd>
 		   <dt>
              <span class="style14">
              <label for="firstname"><font face="Verdana, Arial, Helvetica, sans-serif" size="2" align="left"><b>Password:</b></font></label>
           </span>          </dt>
-          <dd><input name="pwd" type="password" id="pwd" maxlength="15" />
+          <dd><input name="pwd" type="password" id="pwd" maxlength="15" onfocus="setFocus(this.id)" onblur="setBlur(this.id)"/>
           <span class="hint"><font face="Verdana, Arial, Helvetica, sans-serif" size="1">Password should not exceed 15 characters.</font>
          <span class="hint-pointer"></span>  </span>		  </dd>
           

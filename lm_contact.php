@@ -20,6 +20,7 @@
     <li class="topfirst"><a href="contactForm.php" style="width:130px;">Send Mails</a></li><hr size="3" color="#006699"/>
     <li class="topfirst"><a href="contactTeacher.php" style="width:130px;">Contact Teachers</a></li>    <hr size="3" color="#006699"/>
     <li class="topfirst"><a href="editTeacherInfo.php" style="width:130px;">Edit Teacher's Info</a></li>    <hr size="3" color="#006699"/>
+    <li class="topfirst"><a href="contact_us.php" style="width:130px;">Contact Us</a></li>    <hr size="3" color="#006699"/>
         <li class="topmenu"><a href="home.php" style="width:130px;"><img src="images/css3menu2/back-2-1.png" width="20" height="20" /> Back to Home</a></li>
   </ul>
   <p style="display:none"><a href="http://css3menu.com/">CSS Buttons with Images Css3Menu.com</a></p>

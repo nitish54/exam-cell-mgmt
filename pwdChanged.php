@@ -8,7 +8,7 @@ $newpwd = $_POST['txtpwd'];
 $sql="SELECT * FROM exam_cell.login WHERE username = '".$username."'";
 $result = mysql_query($sql);
 $row = mysql_fetch_array($result);
-if($row[1]==$centpwd){
+if($row[1]==$crntpwd){
 $sql1="UPDATE exam_cell.login SET password = '".$newpwd."' WHERE username = '".$username."'";
 mysql_query($sql1);
 header('location: viewProfile.php?msg=Password Changed Successfully');
