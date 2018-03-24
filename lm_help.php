@@ -44,7 +44,7 @@ body {
         <a href="profile_help.php" target="content"> <font face="verdana" size="3" color="#336699" >-Profile</font></a><br>
         <a href="add_user_help.php" target="content"> <font face="verdana" size="3" color="#336699" >-Add a new user</font></a><br>
             <a href="edit_profile_help.php" target="content"> <font face="verdana" size="3" color="#336699" >-Edit profile</font></a><br>
-            <a href="c_pwd_help.php" target="content"> <font face="verdana" size="3" color="#336699"" >-Change password</font></a><br>
+            <a href="change_pwd_help.php" target="content"> <font face="verdana" size="3" color="#336699"" >-Change password</font></a><br>
             <a href="result_analyzer_help.php" target="content"> <font face="verdana" size="5" color="maroon" >3.1 Result Analyser</font></a><br>
             <a href="analyze_old_help.php" target="content"> <font face="verdana" size="3" color="#336699">-Analyze old scheme</font></a><br>
             <a href="analyze_new_help.php" target="content"> <font face="verdana" size="3" color="#336699">-Analyze new scheme</font></a><br>

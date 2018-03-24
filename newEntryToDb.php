@@ -9,7 +9,7 @@ $doExtract = extractText($tablename);
 header("location: Analysis.php?table=$tablename");
 
 function getFile() {
-    if (($_FILES["file"]["type"] == "application/pdf") && ($_FILES["file"]["size"] < 2000000)) {
+    if (($_FILES["file"]["type"] == "application/pdf") && ($_FILES["file"]["size"] < 20000000)) {
         if ($_FILES["file"]["error"] > 0) {
             die("Return Code: " . $_FILES["file"]["error"] . "<br />");
         } else {
@@ -30,7 +30,7 @@ function getFile() {
 
 function extractText($tablename) {
     $open = 'upload/' . $_FILES["file"]["name"];
-    $content = shell_exec('software\pdftotext -raw ' . $open . ' upload/temp.txt');
+    $content = shell_exec('software\pdftotext ' . $open . ' upload/temp.txt');
     $outFile = 'upload/temp.txt';
     $fileWrite = 'upload/written.txt';
     $fh = fopen($outFile, 'r') or die('can\'t open file');
@@ -52,7 +52,7 @@ function doCoding($fh, $fw, $tablename) {
           if ((preg_match('/[a-zA-Z]/', $oneLine)) || (preg_match('/[:|-|[|\]]/', $oneLine)) || (preg_match('/[0-9]/', $oneLine)))
         {    
             if((preg_match('/[0-9]{4}[a-zA-Z]{2,3}[0-9]+/', $oneLine))||(preg_match('/[0-9]{1,2}[.][0-9]+/', $oneLine))){
-              fwrite($fw, $oneLine);
+             fwrite($fw, $oneLine);
             }
             $oneLine = null;
         } else {

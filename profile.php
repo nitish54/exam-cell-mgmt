@@ -27,7 +27,8 @@ $dob = $year_diff;
 <body>
 <div align="center">
   <table width="610" border="0" cellpadding="0" cellspacing="0">
-    <!--DWLayoutTable-->
+  <font face="verdana" size="3" color="#006699"><u><marquee behaviour="scroll" scrollamount="3" direction="left"
+ onmouseover="this.stop();" onmouseout="this.start();">To know more about this software <a href="about_us.php"><font face="verdana" size="4" color="maroon"><blink>Click here!!!!!</blink></font></a></u></marquee></font>
     <tr>
       <td width="56" height="42">&nbsp;</td>
       <td width="9">&nbsp;</td>

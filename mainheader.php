@@ -60,7 +60,7 @@ $(window).bind("scroll", function() {
 });
 </script>
 <body>
-      <table id="header-fixed" width="100%" style="opacity:0.7;">
+      <table id="header-fixed" width="100%" style="opacity:0.8;">
           <tr><td width="20%"><span class="look">Welcome <?php echo "<font color='blue'>".$_SESSION['user'];?></td><td width="80%"><div align="right"><img src="images/061.gif" width="16" height="16" /><a href="home.php"><font color="black" size="3">Home</font></a>&nbsp; <img src="images/066.gif" width="16" height="16" /><a href="about_us.php" target="content"><font color="black" size="3">AboutUs</font></a>&nbsp; <img src="images/055.gif" width="16" height="16" /><a href="help.php" target="blank"><font color="black" size="3">Help</font></a>&nbsp; &nbsp; </span></div>  </td></tr>
        </table>
      <br/>

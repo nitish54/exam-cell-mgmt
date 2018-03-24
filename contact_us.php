@@ -1,8 +1,8 @@
 <?php
-//session_start();
-//if (!isset($_SESSION['name']))
-//    header('location: login.php');
-//?>
+session_start();
+if (!isset($_SESSION['name']))
+    header('location: login.php');
+?>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -50,7 +50,7 @@
                    
               <table border="0" cellpadding="0" cellspacing="0" style="border-radius: 20px" width="800" height="200" bgcolor="#008FB2">
       <tr><td colspan="4" rowspan="6" align="center">   
-              <img src="images/Everyone0114.jpg" height="150" width="150" align="center" style="border-radius: 20px" border="2" bordercolor="black">
+              <img src="images/blank_profile.jpg" height="150" width="150" align="center" style="border-radius: 20px" border="2" bordercolor="black">
             
               </td>
               </tr>

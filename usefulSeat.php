@@ -53,7 +53,6 @@ else
 
 function doWork($arrroom, $arrenroll, $arrexclude, $totalCapacity, $capacity, $year) {
     if (($totalCapacity) >= (count($arrenroll) - count($arrexclude))) {
-          if(count($arrroom)>=count($capacity)){
         static $total = array();
         //$grossenroll = enrollno($capacity, $arrenroll, $arrexclude, $grossenroll, $total);
         static $p = 0, $m = 0;
@@ -112,8 +111,8 @@ function doWork($arrroom, $arrenroll, $arrexclude, $totalCapacity, $capacity, $y
                 $grossenroll[$p++] = "Over " . ($finallist[2].$finallist[3].count($finallist));
             unset($finallist);
             unset($next);
-            unset($branch);
-            unset($enrl);
+          //  array_unshift($finallist, array_shift($finallist));
+          //  array_unshift($finallist, array_shift($finallist));
         }
 
         require('fpdf/fpdf.php');
@@ -195,9 +194,6 @@ function doWork($arrroom, $arrenroll, $arrexclude, $totalCapacity, $capacity, $y
     }
     else
         header('location: seatForm.php?msg=Not Enough Rooms provided according to the Capacity.');
-    }
-    else
-        header('location: seatForm.php?msg=Room Capacity is lower.');
 }
 
 ?>

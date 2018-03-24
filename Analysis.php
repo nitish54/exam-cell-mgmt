@@ -68,6 +68,7 @@ table
 -->
 </style>
 <body>
+    <div align="center">
       <?php   include 'mainheader.php'; ?> 
 
     <table border="1" width="1000" height="600">
@@ -111,7 +112,7 @@ table
             
             </table> 
     <?php   include 'footer.php'; ?>
-        
+        </div>
      </body>
     
 </html>

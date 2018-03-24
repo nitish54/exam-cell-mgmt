@@ -6,7 +6,7 @@ if (!isset($_SESSION['name']))
 	$conn = @fsockopen("www.google.com", 80, $errno, $errstr, 30);
 	if ($conn)
 	{
-		$to = $_POST['txtTo'];
+	$to = $_POST['txtTo'];
         $subject = $_POST['txtSub'];
         $msg = $_POST['txtMsg'];
         $message = wordwrap($msg, 70);

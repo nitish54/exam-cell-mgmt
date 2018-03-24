@@ -27,8 +27,8 @@ a.rollover:hover > img {
       
        <font face="verdana" size="2">Home page contains tabs for Result Analyzer,ID card generator, Student's information, Teacher's information, Database etc.   </font><br>
    <div align="center"><a href="" class="rollover"> <img src="image_help/home.png" ></a></div>
+   
     <br><br>
-     
      
      
     

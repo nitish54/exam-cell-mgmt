@@ -2,14 +2,17 @@
 session_start();
 if(!isset($_SESSION['name']))
     header('location: login.php');
-$year = $_POST['txtYear'];
-$exclude = $_POST['txtExclude'];
-$cap = $_POST['txtCapacity'];
-$room = $_POST['txtRoom'];
-$enroll = $_POST['txtEnrol'];
+include 'dbconfig.php';
+$year = $_GET['year'];
+$cap =$_GET['cap'];
+$rc =$_GET['rc'];
+$room = $_GET['room'];
+$enroll =$_GET['enroll'];
+$exclude = $_GET['exclude'];
 $capacity = explode(",", $cap);
-$arrenroll = explode(",", $enroll);
-$arrroom = explode(",", $room);
+$rowcolumn = explode(",", $rc);
+$arrenroll = explode(",",$enroll);
+$arrroom = explode(",",$room);
 $totalCapacity = 0;
 for($i=0;$i<count($capacity);$i++){
     $totalCapacity = $totalCapacity+$capacity[$i];
@@ -43,21 +46,21 @@ if ($arrexclude != null) {
     }
 }
 if ($troom == 1)
-    header('location: seatForm.php?msg=Don\'t Repeat same room nos.');
+    echo"<font color='red' size='3'>Don\'t Repeat same room nos.</font>";
 else if ($texclude == 1)
-    header('location: seatForm.php?msg=Don\'t Repeat same Enrollment nos.');
+    echo"<font color='red' size='3'>Don\'t Repeat same Enrollment nos.</font>";
 else if ($temp == 1)
-    header('location: seatForm.php?msg=Enrollment no. not found.');
+     echo"<font color='red' size='3'>Enrollment no. not found.'</font>";
 else
-    doWork($arrroom, $arrenroll, $arrexclude, $totalCapacity, $capacity, $year);
+doWork($arrroom, $arrenroll, $arrexclude, $totalCapacity, $capacity, $year, $rowcolumn);
 
-function doWork($arrroom, $arrenroll, $arrexclude, $totalCapacity, $capacity, $year) {
+function doWork($arrroom, $arrenroll, $arrexclude, $totalCapacity, $capacity, $year, $rowcolumn) {
     if (($totalCapacity) >= (count($arrenroll) - count($arrexclude))) {
           if(count($arrroom)>=count($capacity)){
         static $total = array();
         //$grossenroll = enrollno($capacity, $arrenroll, $arrexclude, $grossenroll, $total);
         static $p = 0, $m = 0;
-        $count = 0;
+        $count = 0;$o=0;
         if ($arrexclude != null) {
             for ($t = 0; $t < count($arrexclude); $t++) {
                 for ($j = 0; $j < count($arrenroll); $j++) {
@@ -76,7 +79,6 @@ function doWork($arrroom, $arrenroll, $arrexclude, $totalCapacity, $capacity, $y
                 $end = $arrenroll[$count + $capacity[$h] - 1];
                 $count = $count + $capacity[$h];
                 $total[$m++] = $capacity[$h];
-                include 'dbconfig.php';
                 $check = 0;
                 $check1 = 0;
                 for ($a = $i; $a < $count; $a++) {
@@ -85,8 +87,9 @@ function doWork($arrroom, $arrenroll, $arrexclude, $totalCapacity, $capacity, $y
                     $row = mysql_fetch_array($res);
                     $branch[$check++] = $row['branch'];
                     $enrl[$check1++] = $row['enroll_no'];
-                }
-                $b = 0;
+                    }
+                    $special[$o++] = implode(",", $enrl);
+            $b = 0;
             $c = 0;
                 for ($l = 0; $l < count($branch); $l++) {
                     if ($branch[$l] != $branch[0]) {
@@ -98,9 +101,19 @@ function doWork($arrroom, $arrenroll, $arrexclude, $totalCapacity, $capacity, $y
             } else {
                 $end = $arrenroll[count($arrenroll) - 2];
                 $total[$m++] = (count($arrenroll) - $count - 1);
-            }
+                $check = 0;
+                $check1 = 0;
+                for ($a = $i; $a < count($arrenroll)-1; $a++) {
+                    $sql = "Select * from exam_cell.$year where enroll_no = '$arrenroll[$a]'";
+                    $res = mysql_query($sql);
+                    $row = mysql_fetch_array($res);
+                    $branch[$check++] = $row['branch'];
+                    $enrl[$check1++] = $row['enroll_no'];
+                    }
+                    $special[$o] = implode(",", $enrl);
+             }
             
-            if (count($finallist) == 0 || count($finallist)>=3)
+            if (count($finallist) == 0)
                 $grossenroll[$p++] = $start . " to " . $end;
             else if (count($finallist) == 1) {
                 $grossenroll[$p++] = $start . " to " . $finallist[0] . " And " . $next[0] . " to " . $end;
@@ -115,89 +128,21 @@ function doWork($arrroom, $arrenroll, $arrexclude, $totalCapacity, $capacity, $y
             unset($branch);
             unset($enrl);
         }
-
-        require('fpdf/fpdf.php');
-
-        class PDF extends FPDF {
-
-            function Header() {
-                // Logo
-                $this->Image('images/blacklogo.jpg', 10, 6, 30);
-                // Select Arial bold 15
-                $this->SetFont('Arial', 'B', 36);
-                $this->Ln(7);
-                // Move to the right
-                $this->Cell(90);
-                // Framed title
-                $this->Cell(30, 10, 'Seating Arrangement', 0, 0, 'C');
-                // Line break
-                $this->Ln(20);
-            }
-
-            // Page footer
-            function Footer() {
-                // Position at 1.5 cm from bottom
-                $this->SetY(-15);
-                // Arial italic 8
-                $this->SetFont('Arial', 'I', 8);
-                // Page number
-                $this->Cell(0, 10, 'Page ' . $this->PageNo() . '/{nb}', 0, 0, 'C');
-                $this->SetY(-25);
-                $this->SetFont('Arial', 'I', 20);
-                $this->Cell(140);
-                // Framed title
-                $this->Cell(30, 10, 'Principal\'s Signature', 0, 0, 'C');
-            }
-
+        echo "<table border='1' width='600'>";
+        echo "<tr><th>Room No.</th><th>Capacity</th><th>Range</th><th>Rows X Columns</th></tr>";
+       for($r=0;$r<count($arrroom);$r++)
+        {
+           echo "<tr>";
+            echo "<td>$arrroom[$r]</td>
+           <td><input type='text' value='$total[$r]' size='2' readonly='true'></td> 
+           <td><input type='text' value='$special[$r]' size='6' readonly='true'></td>
+            <td><input type='text' value='$rowcolumn[$r]' size='4' readonly='true'></td>
+           <td><a href='showRoom.php?range=$special[$r]&room=$arrroom[$r]&rc=$rowcolumn[$r]' target='_blank'>
+           <input type='button' value='Show Arrangement'></a></td><br/>";
+           echo "</tr>";
         }
-        
-        $subYear = str_split($year, 2);
-        $pdf = new PDF();
-        $pdf->AliasNbPages();
-        $pdf->AddPage();
-        $pdf->Ln(10);
-        $pdf->Cell(90);
-        $pdf->SetFont('Arial', 'B', 20);
-
-        $pdf->Cell(30, 10, 'For Session : ' . $year . " - ". ($subYear[1]+1), 0, 0, 'C');
-
-        $pdf->Ln(20);
-        $pdf->SetFont('Arial', 'B', 20);
-        $pdf->Cell(20, 20, 'S.No', 1, 0, 'C');
-        $pdf->Cell(40, 20, 'Room No.', 1, 0, 'C');
-        $pdf->Cell(25, 20, 'Total', 1, 0, 'C');
-        $pdf->Cell(0, 20, 'Enrollment Nos.', 1, 0, 'C');
-
-        $pdf->Ln(20);
-        $pdf->SetFont('Times', '', 16);
-        for ($i = 0; $i < count($arrroom); $i++) {
-            if (strlen($grossenroll[$i]) <= 30)
-                $width = 20;
-            if (strlen($grossenroll[$i]) >= 30 && strlen($grossenroll[$i]) <= 60)
-                $width = 40;
-            if (strlen($grossenroll[$i]) >= 60 && strlen($grossenroll[$i]) <= 90)
-                $width = 50;
-            if (strlen($grossenroll[$i]) > 90)
-                $width = 60;
-            if (strlen($grossenroll[$i]) == 0) {
-                $grossenroll[$i]="Nil";
-                $total[$i]="Nil";
-            }
-            $pdf->Cell(20, $width, $i + 1, 1, 0, 'C');
-            $pdf->Cell(40, $width, $arrroom[$i], 1, 0, 'C');
-
-            $pdf->Cell(25, $width, $total[$i], 1, 0, 'C');
-            $pdf->MultiCell(0, 20, $grossenroll[$i], 1, 'C');
-
-            $pdf->Ln(10);
-        }
-        $pdf->Output();
+          }
     }
-    else
-        header('location: seatForm.php?msg=Not Enough Rooms provided according to the Capacity.');
-    }
-    else
-        header('location: seatForm.php?msg=Room Capacity is lower.');
-}
+          }
 
 ?>

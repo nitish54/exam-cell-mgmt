@@ -263,9 +263,9 @@ Admin please login here</font></legend>
      <label>
      <input type="reset" name="btnreset" value="Reset" class="style1"/>
      </label>
-       <br />
-     <br />
-     
+       <br /><br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="forgotPwdForm.php"><u><font color="#00CCFF" size="3"><i>Forgot Your Password? Click here</i></font></u></a>
    </form>
    <p>&nbsp;</p>
    </fieldset></td>
