@@ -10,7 +10,7 @@ else {
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<title>Untitled Document</title>
+<title>Register New User</title>
 <style type="text/css">
 <!--
 .style1 {
@@ -22,6 +22,13 @@ body{
 }
 -->
 </style>
+ <link href="calendar/calendar.css" rel="stylesheet" type="text/css"/>
+        <script src="calendar/calendar.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            function init() {
+                calendar.set("txtdob");
+            }
+        </script>
 </head>
 <script type="text/javascript">
     function func()
@@ -75,7 +82,7 @@ body{
     }
    
  </script>
-<body>
+<body onload="init()">
 <div align="center">
   <table width="654" border="0" cellpadding="0" cellspacing="0">
     <!--DWLayoutTable-->
@@ -273,11 +280,9 @@ body{
       <td colspan="2" valign="top">Date of Birth</td>
       <td></td>
       <td></td>
-      <td colspan="6" valign="top">
-        <label>
-          <input type="text" name="txtdob" />
-          &nbsp; yyyy-mm-dd</label>
-      </td>
+      <td colspan="6" valign="top"><label>
+              <input name='txtdob' type='text' id="txtdob"/>Format: yyyy-mm-dd
+          </label>      </td>
       <td></td>
       <td></td>
       <td></td>
@@ -310,7 +315,7 @@ body{
       <td></td>
       <td colspan="6" valign="top">
         <label>
-          <input type="text" name="txtdesign" />
+            <input type="text" name="txtdesign" onfocus="calendar.hideCalendar()"/>
           </label>
       </td>
       <td></td>

@@ -96,7 +96,14 @@ $row = mysql_fetch_array($result);
         
     }
  </script>
-<body>
+    <link href="calendar/calendar.css" rel="stylesheet" type="text/css"/>
+        <script src="calendar/calendar.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            function init() {
+                calendar.set("txtdob");
+            }
+        </script>
+<body onload="init()">
 <div align="center">
   <table width="654" border="0" cellpadding="0" cellspacing="0">
     <!--DWLayoutTable-->
@@ -228,7 +235,7 @@ $row = mysql_fetch_array($result);
       <td colspan="5" rowspan="2" valign="top">
         <label>
           <input type="text" name="txtdob" id="txtdob" value="<?php echo $row[3] ?>"/>
-         &nbsp;yyyy-mm-dd </label>
+         </label>
          </td>
       <td></td>
       <td></td>
@@ -270,7 +277,7 @@ $row = mysql_fetch_array($result);
       <td></td>
       <td colspan="5" valign="top">
         <label>
-          <input type="text" name="txtdesign" id="txtdesign" value="<?php echo $row[2] ?>"/>
+            <input type="text" name="txtdesign" id="txtdesign" value="<?php echo $row[2] ?>" onfocus="calendar.hideCalendar()"/>
           </label>
         </td>
       <td></td>

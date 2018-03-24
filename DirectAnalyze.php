@@ -5,18 +5,6 @@ if(!isset($_SESSION['name']))
 ?>
 <html>
     <title>Exam Cell Portal</title>
-    <head>
-        <style type="text/css">
-<!--
-table
-{
-    border-color:#006699;
-    border-style:solid;
-}
-
--->
-</style>
-    </head>
     <body>
         <?php   include 'mainheader.php'; ?> 
         <div align="center">

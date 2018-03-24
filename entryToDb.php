@@ -1,4 +1,7 @@
 <?php
+session_start();
+if(!isset($_SESSION['name']))
+    header('location: login.php');
 include 'dbconfig.php';
 getFile();
 $tablename = createDatabase($tablename);

@@ -20,6 +20,14 @@ function addLoadEvent(func) {
     }
   }
 }
+function setFocus(){
+     document.getElementById('name').style.background="yellow";
+     document.getElementById('name').style.opacity="1";
+   }
+function setBlur(){
+     document.getElementById('name').style.opacity="0.4";
+      document.getElementById('name').style.background="blue";
+   }
 
 function prepareInputsForHints() {
   var inputs = document.getElementsByTagName("input");
@@ -210,7 +218,7 @@ Admin please login here</font></legend>
             <span class="style14">
             <label for="firstname"><font face="Verdana, Arial, Helvetica, sans-serif" size="2" align="left"><b>Username:</b></font></label>
           </span>          </dt>
-          <dd><input name="name" type="text" id="name" maxlength="20" />
+          <dd><input name="name" type="text" id="name" maxlength="20" onfocus="setFocus()" onblur="setBlur()"/>
           <span class="hint"><font face="Verdana, Arial, Helvetica, sans-serif" size="1">Name should not exceed 20 characters.</font>
           <span class="hint-pointer"></span>  </span>		  </dd>
 		   <dt>

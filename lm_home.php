@@ -18,10 +18,10 @@
   <td width="144" height="358" valign="top" bgcolor="#006699">
   <!-- Start css3menu.com BODY section id=1 -->
   <ul id="css3menu1" class="topmenu">
-    <li class="topfirst"><a href="viewProfile.php" style="width:130px;">Profile</a></li>
-        <li class="topmenu"><a href="addUser.php" style="width:130px;">Add a New user</a></li>
-        <li class="topmenu"><a href="editProfile.php" style="width:130px;">Edit Profile</a></li>
-        <li class="topmenu"><a href="changePwd.php" style="width:130px;">Change Password</a></li>
+    <li class="topfirst"><a href="viewProfile.php" style="width:130px;">Profile</a></li><hr size="3" color="#006699"/>
+        <li class="topmenu"><a href="addUser.php" style="width:130px;">Add a New user</a></li><hr size="3" color="#006699"/>
+        <li class="topmenu"><a href="editProfile.php" style="width:130px;">Edit Profile</a></li><hr size="3" color="#006699"/>
+        <li class="topmenu"><a href="changePwd.php" style="width:130px;">Change Password</a></li><hr size="3" color="#006699"/>
         <li class="topmenu"><a href="home.php" style="width:130px;"><img src="images/css3menu2/back-2-1.png" width="20" height="20" /> Back to Home</a></li>
   </ul>
   <p style="display:none"><a href="http://css3menu.com/">CSS Buttons with Images Css3Menu.com</a></p>

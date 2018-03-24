@@ -33,7 +33,7 @@ function showUser(str)
 {
     var table = document.getElementById("txtName").value;
 
-if (str=="")
+if (str=="Select Branch")
   {
   document.getElementById("txtHint").innerHTML="";
   return;
@@ -99,10 +99,10 @@ table
       <td>&nbsp;</td>
       
     </tr>
-    <tr>
+    
 	<br /><tr><td colspan="5">
         <div id="txtHint"><b>                <font size="4">       Info will be listed here...</b><br/></div></td></tr>
-        
+                                        
   </table>
                     </td>
                     

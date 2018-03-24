@@ -17,8 +17,8 @@
   <td width="144" height="358" valign="top" bgcolor="#006699">
   <!-- Start css3menu.com BODY section id=1 -->
   <ul id="css3menu1" class="topmenu">
-    <li class="topfirst"><a href="idForm.php" style="width:130px;">Generate ID Card</a></li>
-        
+    <li class="topfirst"><a href="idForm.php" style="width:130px;">Generate ID Card</a></li><hr size="3" color="#006699"/>
+    <li class="topfirst"><a href="duplicateId.php" style="width:130px;">Issue Duplicate ID</a></li>    <hr size="3" color="#006699"/>
         <li class="topmenu"><a href="home.php" style="width:130px;"><img src="images/css3menu2/back-2-1.png" width="20" height="20" /> Back to Home</a></li>
   </ul>
   <p style="display:none"><a href="http://css3menu.com/">CSS Buttons with Images Css3Menu.com</a></p>

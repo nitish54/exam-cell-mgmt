@@ -10,6 +10,10 @@ $row = mysql_fetch_array($result);
 if($row[0])
 {
     $_SESSION['name']=$username;
+    $sql1="SELECT * FROM exam_cell.profile WHERE username = '".$username."'";
+    $res = mysql_query($sql1);
+    $rows = mysql_fetch_array($res);
+    $_SESSION['user'] = $rows[1];
     header("location: home.php");
 }
 else {

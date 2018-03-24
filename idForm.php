@@ -4,8 +4,6 @@ if(!isset($_SESSION['name']))
     header('location: login.php');
 
 ?>
-
-
 <html>
     <title>Exam Cell Portal</title>
     <head>
@@ -26,8 +24,121 @@ if(!isset($_SESSION['name']))
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <title>ID Card Form</title>
+<link href="calendar/calendar.css" rel="stylesheet" type="text/css"/>
+        <script src="calendar/calendar.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            function init() {
+                calendar.set("txtDob");
+            }
+        </script>
 <script type="text/javascript">
-    function StudentPage()
+function valid()
+{
+         if(document.forms["idform"]["fselect"].value=="Select")
+            {
+                alert("Enter Proper Validity");
+                return false;
+            }
+        if(document.forms["idform"]["tselect"].value=="Select")
+            {
+                alert("Enter Proper Validity");
+                return false;
+            }
+        if(document.forms["idform"]["txtId"].value=="")
+            {
+                alert("ID can not be empty");
+                return false;
+            }
+        if(document.forms["idform"]["txtBranch"].value=="")
+            {
+                alert("Branch can not be empty");
+                return false;
+            } 
+        if(document.forms["idform"]["txtName"].value=="")
+            {
+                alert("Name can not be empty");
+                return false;
+            }
+        if(document.forms["idform"]["txtFname"].value=="")
+            {
+                alert("Father\'s Name can not be empty");
+                return false;
+            }
+       
+        if(document.forms["idform"]["txtDob"].value=="")
+            {
+                alert("Date of Birth field can not be empty");
+                return false;
+            }
+             if(document.forms["idform"]["txtWork"].value=="")
+            {
+                alert("Designation field can not be empty");
+                return false;
+            }
+            if(document.forms["idform"]["txtAdd1"].value=="")
+            {
+                alert("Address field canot be empty");
+                return false;
+            }
+        if(document.forms["idform"]["txtContact"].value=="")
+            {
+                alert("Mobile no. can not be empty");
+                return false;
+            }
+        if(document.forms["idform"]["txtImage"].value=="Choose Image")
+            {
+                alert("Upload a Photo");
+                return false;
+            }
+         
+      else return true;   
+}
+function showUser()
+{
+    var fselect = document.getElementById("fselect").value;
+    var tselect = document.getElementById("tselect").value;
+    var txtId = document.getElementById("txtId").value;
+    var txtBranch = document.getElementById("txtBranch").value;
+    var txtName = document.getElementById("txtName").value;
+    var txtFname = document.getElementById("txtFname").value;
+    var txtWork = document.getElementById("txtWork").value;
+    var txtDob = document.getElementById("txtDob").value;
+    var txtAdd1 = document.getElementById("txtAdd1").value;
+    var txtAdd2 = document.getElementById("txtAdd2").value;
+    var txtContact = document.getElementById("txtContact").value;
+    var image = document.getElementById("txtImage").value;
+    
+    for (var i=0; i < document.idform.radio1.length; i++)
+    {
+        if (document.idform.radio1[i].checked)
+    {
+        var mainradio = document.idform.radio1[i].value;
+    }
+    }
+   
+if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.onreadystatechange=function()
+  {
+  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+    document.getElementById("txtHint").innerHTML=xmlhttp.responseText;
+    }
+  }
+  if(mainradio == "student")
+xmlhttp.open("GET","idPreviewStudent.php?fselect="+fselect+"&tselect="+tselect+"&name="+txtName+"&id="+txtId+"&branch="+txtBranch+"&fname="+txtFname+"&work="+txtWork+"&dob="+txtDob+"&add1="+txtAdd1+"&add2="+txtAdd2+"&contact="+txtContact+"&image="+image,true);
+ if(mainradio == "teacher")
+xmlhttp.open("GET","idPreviewTeacher.php?name="+txtName+"&id="+txtId+"&branch="+txtBranch+"&fname="+txtFname+"&work="+txtWork+"&dob="+txtDob+"&add1="+txtAdd1+"&add2="+txtAdd2+"&contact="+txtContact+"&image="+image,true);
+xmlhttp.send();
+}
+    
+function StudentPage()
     {
         var label3 = document.getElementById('label3');
         var label4 = document.getElementById('label4');
@@ -47,6 +158,17 @@ if(!isset($_SESSION['name']))
         label7.innerText = "Enrollment No.";
         label8.innerText = "Bona fide Student";
         label9.innerText = "Branch";
+        fselect.value="select";
+        tselect.value="select";
+        document.getElementById("txtId").value="";
+        document.getElementById("txtBranch").value="";
+        document.getElementById("txtName").value="";
+        document.getElementById("txtFname").value="";
+        document.getElementById("txtWork").value="";
+        document.getElementById("txtDob").value="";
+        document.getElementById("txtAdd1").value="";
+        document.getElementById("txtAdd2").value="";
+        document.getElementById("txtContact").value="";
             return true;
     }
      function TeacherPage()
@@ -69,8 +191,32 @@ if(!isset($_SESSION['name']))
         label7.innerText = "Employee No.";
         label8.innerText = "Designation";
         label9.innerText = "Department";
+        fselect.value="select";
+        tselect.value="select";
+        document.getElementById("txtId").value="";
+        document.getElementById("txtBranch").value="";
+        document.getElementById("txtName").value="";
+        document.getElementById("txtFname").value="";
+        document.getElementById("txtWork").value="";
+        document.getElementById("txtDob").value="";
+        document.getElementById("txtAdd1").value="";
+        document.getElementById("txtAdd2").value="";
+        document.getElementById("txtContact").value="";
         return true;
     }
+    function popup()
+    { 
+        var id = document.getElementById('txtId').value;
+        if(id==""){
+            alert("Enter Identification number first..."); return;
+        }
+        window.open("popupImage.php?id="+id,'PopWin','width=500px, Height=450px,left=300px,top=140px,toolbar=no,menubar=no,location=0');
+    }
+    function upperCase()
+{
+    var id= document.getElementById('txtId');
+    id.value=id.value.toUpperCase();
+}
 </script>
 <style type="text/css">
 <!--
@@ -83,11 +229,12 @@ if(!isset($_SESSION['name']))
 </style>
 </head>
 
-<body>
+<body onload="init()">
 <div align="center">
   <table width="790" border="0" cellpadding="0" cellspacing="0">
     <!--DWLayoutTable-->
     <tr>
+      
       <td width="114" height="55">&nbsp;</td>
       <td width="86">&nbsp;</td>
       <td width="26">&nbsp;</td>
@@ -109,6 +256,14 @@ if(!isset($_SESSION['name']))
       <td width="98">&nbsp;</td>
     </tr>
     <tr>
+        <td colspan="10" align="center">
+            <?php 
+            $msg = $_GET['msg'];
+            if($msg!=null) echo '<font size="4" color="RED">'.$msg;
+                ?>
+        </td>
+    </tr>
+    <tr>
       <td height="63">&nbsp;</td>
       <td colspan="17" valign="top"><span class="style3">Fill Required Entries </span></td>
       <td>&nbsp;</td>
@@ -121,14 +276,14 @@ if(!isset($_SESSION['name']))
     <tr>
       <td height="24"></td>
       <td>&nbsp;</td>
-      <td colspan="4" valign="top"><form id="form1" name="form1" method="post" action="" enctype="multipart/form-data">
-      <input name="radio1" type="radio" style ="visibility : visible; " onclick="return StudentPage();">Student</input>
+      <td colspan="4" valign="top"><form id="idform" name="idform" method="post" action="idSubmit.php" enctype="multipart/form-data">
+      <input name="radio1" type="radio" id="radio1" value="student" style ="visibility : visible; " onclick="return StudentPage();" checked="checked">Student</input>
 
       </td>
       <td>&nbsp;</td>
       
       <td colspan="7" valign="top">
-      <input name="radio1" type="radio" style ="visibility : visible; " onclick="return TeacherPage();">Teacher</input>
+      <input name="radio1" type="radio" id="radio1" value="teacher" style ="visibility : visible; " onclick="return TeacherPage();">Teacher</input>
       </td>
       <td>&nbsp;</td>
       <td></td>
@@ -148,7 +303,7 @@ if(!isset($_SESSION['name']))
       <td>&nbsp;</td>
       <td colspan="2" rowspan="2" valign="top">
           <label>
-            <select name="select" id="fselect" style ="visibility : visible;">
+            <select name="fselect" id="fselect" style ="visibility : visible;">
               <option value="select">Select</option>
               <option value="2012">2012</option>
               <option value="2013">2013</option>
@@ -165,7 +320,7 @@ if(!isset($_SESSION['name']))
       <td colspan="2" valign="top"> <div align="center"><label id="label6" style ="visibility : visible;">to</label></div></td>
       <td valign="top">
         <label>
-          <select name="select2" id="tselect" style ="visibility : visible;">
+          <select name="tselect" id="tselect" style ="visibility : visible;">
             <option value="select">Select</option>
             <option value="2016">2016</option>
             <option value="2017">2017</option>
@@ -198,7 +353,7 @@ if(!isset($_SESSION['name']))
       <td valign="top">:</td>
       <td colspan="9" valign="top">
         <label>
-          <input type="text" name="textfield2" />
+          <input type="text" name="txtId" id="txtId" onkeyup="upperCase()" onblur="upperCase()" />
           </label>
       </td>
       <td></td>
@@ -214,7 +369,7 @@ if(!isset($_SESSION['name']))
       <td valign="top">:</td>
       <td colspan="9" valign="top">
         <label>
-          <input type="text" name="textfield2" />
+          <input type="text" name="txtBranch" id="txtBranch"/>
           </label>
       </td>
       <td></td>
@@ -230,7 +385,7 @@ if(!isset($_SESSION['name']))
       <td valign="top">:</td>
       <td colspan="9" valign="top">
         <label>
-          <input type="text" name="textfield" />
+          <input type="text" name="txtName" id="txtName"/>
           </label>
        </td>
       <td></td>
@@ -246,7 +401,7 @@ if(!isset($_SESSION['name']))
       <td valign="top">:</td>
       <td colspan="9" valign="top">
         <label>
-          <input type="text" name="textfield3" />
+          <input type="text" name="txtFname" id="txtFname" />
           </label>
       </td>
       <td></td>
@@ -262,7 +417,7 @@ if(!isset($_SESSION['name']))
       <td valign="top">:</td>
       <td colspan="9" valign="top">
         <label>
-          <input type="text" name="textfield4" />
+          <input type="text" name="txtWork" id="txtWork"/>
           </label>
           </td>
       <td></td>
@@ -278,7 +433,7 @@ if(!isset($_SESSION['name']))
       <td valign="top">:</td>
       <td colspan="9" valign="top">
         <label>
-          <input type="text" name="textfield5" />
+          <input type="text" name="txtDob" id="txtDob" />
           </label>
          </td>
       <td></td>
@@ -286,17 +441,33 @@ if(!isset($_SESSION['name']))
       <td></td>
     </tr>
     
-    <tr>
-      <td height="35"></td>
+     <tr>
+      <td height="22"></td>
       <td></td>
       <td></td>
-      <td colspan="3" valign="top">Address</td>
+      <td colspan="3" valign="top">Address Line 1</td>
       <td valign="top">:</td>
       <td colspan="9" valign="top">
         <label>
-          <textarea name="textarea"></textarea>
+            <input type="text" name="txtAdd1" id="txtAdd1" onfocus="calendar.hideCalendar();"/>
           </label>
-         </td>
+       </td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+   
+    <tr>
+      <td height="22"></td>
+      <td></td>
+      <td></td>
+      <td colspan="3" valign="top">Address Line 2</td>
+      <td valign="top">:</td>
+      <td colspan="9" valign="top">
+        <label>
+          <input type="text" name="txtAdd2" id="txtAdd2" />
+          </label>
+      </td>
       <td></td>
       <td></td>
       <td></td>
@@ -310,7 +481,7 @@ if(!isset($_SESSION['name']))
       <td valign="top">:</td>
       <td colspan="9" valign="top">
         <label>
-          <input type="text" name="textfield6" />
+          <input type="text" name="txtContact" id="txtContact" />
           </label>
         </td>
       <td></td>
@@ -325,7 +496,7 @@ if(!isset($_SESSION['name']))
       <td valign="top">:</td>
       <td colspan="8" rowspan="2" valign="top">
         <label>
-          <input type="file" name="file" />
+            <a href="popupImage.php" onclick="popup();return false"><input type="text" value="Choose Image" name="txtImage" id="txtImage" style="opacity: 0.4;" readonly="true"/></a>
           </label>
       </td>
       <td></td>
@@ -362,20 +533,20 @@ if(!isset($_SESSION['name']))
       <td>&nbsp;</td>
       <td valign="top">
         <label>
-        <input type="submit" name="Submit" value="  Preview  " />
+        <input type="button" name="btnpreview" value="  Preview  " onclick="showUser();" />
         </label>
       </td>
       <td>&nbsp;</td>
       <td colspan="2" valign="top">
         <label>
-          <input type="submit" name="Submit2" value="  Submit  " />
+          <input type="submit" name="Submit2" value="  Submit  " onclick="return valid();"/>
           </label>
       </td>
       <td>&nbsp;</td>
       <td>&nbsp;</td>
       <td colspan="2" valign="top">
         <label>
-          <input type="submit" name="Submit3" value="  Reset  " />
+          <input type="reset" name="Submit3" value="  Reset  " />
           </label>
           </form></td>
       <td>&nbsp;</td>
@@ -386,30 +557,13 @@ if(!isset($_SESSION['name']))
       <td></td>
       <td></td>
     </tr>
-    
-    
-    <tr>
-      <td height="150"></td>
-      <td></td>
-      <td></td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
+   
+                 <tr>
+	<br /><tr><td colspan="18">
+        <div id="txtHint"><br/></div></td></tr>
+                 </tr>
   </table>
+    
 </div>
 </body>
 </html>

@@ -1,5 +1,4 @@
 <?php
-
 include 'dbconfig.php';
 $q=$_GET["q"];
 $table=$_GET["name"];
