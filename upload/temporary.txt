@@ -1,0 +1,4 @@
+session,semester,branch,students appeared,passed,above 75%, bet 65 to 75%,bet 55 to 65%,bet 40 to 55%,below 40%,failed
+2010-11,1setB,Computer Science and Engineering,128,71,4,27,42,27,28,57
+2010-11,1setB,Information Technology,1,0,0,0,0,0,1,1
+2010-11,1setB,Mechanical Engineering,63,47,3,19,21,14,6,16
